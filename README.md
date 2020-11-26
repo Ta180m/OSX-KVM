@@ -9,8 +9,6 @@ instructions are included!).
 :green_heart: Looking for **commercial** support with this stuff? I am [available
 over email](mailto:dhiru.kholia@gmail.com?subject=[GitHub]%20OSX-KVM%20Commercial%20Support%20Request&body=Hi%20-%20We%20are%20interested%20in%20purchasing%20commercial%20support%20options%20for%20your%20project.) for a chat for **commercial support options only**.
 
-Looking for `Big Sur` support? See these [notes](Big-Sur.md).
-
 Working with `Proxmox` and macOS? See [Nick's blog for sure](https://www.nicksherlock.com/).
 
 Yes, we support offline macOS installations now 🎉
@@ -59,7 +57,7 @@ help (pull-requests!) with the following work items:
 
 * QEMU >= 4.2.0
 
-* A CPU with Intel VT-x / AMD SVM support is required
+* A CPU with Intel VT-x / AMD SVM support is required (`egrep '(vmx|svm)' /proc/cpuinfo`)
 
 * A CPU with SSE4.1 support is required for >= macOS Sierra
 
@@ -74,19 +72,20 @@ Phenom II X3 720 does not. Ryzen processors work just fine.
 * KVM may need the following tweak on the host machine to work.
 
   ```
-  $ echo 1 | sudo tee /sys/module/kvm/parameters/ignore_msrs
+  echo 1 | sudo tee /sys/module/kvm/parameters/ignore_msrs
   ```
 
   To make this change permanent, you may use the following command.
 
   ```
-  $ sudo cp kvm.conf /etc/modprobe.d/kvm.conf
+  sudo cp kvm.conf /etc/modprobe.d/kvm.conf  # for intel boxes
   ```
 
 * Install QEMU and other packages.
 
   ```
-  sudo apt-get install qemu uml-utilities virt-manager git wget libguestfs-tools -y
+  sudo apt-get install qemu uml-utilities virt-manager git \
+      wget libguestfs-tools p7zip-full -y
   ```
 
   This step may need to be adapted for your Linux distribution.
@@ -107,6 +106,8 @@ Phenom II X3 720 does not. Ryzen processors work just fine.
   ```
   ./fetch-macOS.py
   ```
+
+  ATTENTION: Use `./fetch-macOS-v2.py` for downloading `macOS Big Sur`.
 
   You can choose your desired macOS version here. After executing this step,
   you should have the `BaseSystem.dmg` file in the current folder.
@@ -131,13 +132,14 @@ Phenom II X3 720 does not. Ryzen processors work just fine.
   13    001-68446    10.15.7  2020-11-11  macOS Catalina
   14    001-79699     11.0.1  2020-11-12  macOS Big Sur
 
-  Choose a product to download (1-14): 14
+  Choose a product to download (1-14): 13
   ```
 
-  Attention: Modern NVIDIA GPUs are supported on HighSierra but not on later
-  versions (yet).
+  Note: Modern NVIDIA GPUs are supported on HighSierra but not on later
+  versions.
 
-  Next, convert this file into a usable format.
+* Convert the downloaded (or the extracted) `BaseSystem.dmg` file into the
+  `BaseSystem.img` file.
 
   ```
   qemu-img convert BaseSystem.dmg -O raw BaseSystem.img
@@ -266,4 +268,4 @@ software). Also, a long time back, I had to completely wipe my (then) brand new
 `MacBook Pro (Retina, 15-inch, Late 2013)` and install Xubuntu on it - as the
 `OS X` kernel kept crashing on it!
 
-Backstory: I was a (poor) student in Canada once and Apple made [my work on cracking Apple Keychains](https://github.com/openwall/john/blob/bleeding-jumbo/src/keychain_fmt_plug.c) a lot harder than it needed to be.
+Backstory: I was a (poor) student in Canada once and Apple made [my work on cracking Apple Keychains](https://github.com/openwall/john/blob/bleeding-jumbo/src/keychain_fmt_plug.c) a lot harder than it needed to be. This is how I got interested in Hackintosh systems.

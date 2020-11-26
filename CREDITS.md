@@ -97,3 +97,7 @@
 - Gelma (Andrea Gelmini) - Typo fixes
 
 - ivy-rew (Reguel) - Greatly improved Big-Sur notes
+
+- Broly1 - Greatly improved Big-Sur notes
+
+- mikkeyboi (Michael Leung) - Greatly improved Big-Sur notes
