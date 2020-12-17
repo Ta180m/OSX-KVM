@@ -90,7 +90,7 @@
 
 - Sangwhan "fish" Moon - Big Sur doc enhancements
 
-- ADawesomeguy - Big Sur doc enhancements
+- ADawesomeguy - Big Sur doc enhancements, Xcode + OSX-KVM tutorial
 
 - shmsh9 - Python 3.9.x support
 
@@ -101,3 +101,7 @@
 - Broly1 - Greatly improved Big-Sur notes
 
 - mikkeyboi (Michael Leung) - Greatly improved Big-Sur notes
+
+- CyberShadow (Vladimir Panteleev) - Documentation fixes
+
+- mikehardy (Mike Hardy) - Docker on macOS notes, CPU support notes

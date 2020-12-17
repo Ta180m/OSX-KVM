@@ -19,18 +19,13 @@ Yes, we support offline macOS installations now 🎉
 This project can always use your help, time and attention. I am looking for
 help (pull-requests!) with the following work items:
 
-* Create *full* installation (ISO) image without requiring an existing macOS
-  physical/virtual installation.
-
 * Documentation around running macOS on popular cloud providers (Hetzner, GCP,
   AWS). See the `Is This Legal?` section and associated references.
 
-* Test `accel=hvf` flag on QEMU + macOS Mojave on MacBook Pro.
+* Test QEMU's `accel=hvf` flag on macOS on MacBook Pro.
 
 * Document (share) how you use this project to build + test open-source
   projects / get your stuff done.
-
-* Document how to use this project for iOS development.
 
 * Document how to use this project for XNU kernel debugging and development.
 
@@ -138,8 +133,7 @@ Phenom II X3 720 does not. Ryzen processors work just fine.
   Note: Modern NVIDIA GPUs are supported on HighSierra but not on later
   versions.
 
-* Convert the downloaded (or the extracted) `BaseSystem.dmg` file into the
-  `BaseSystem.img` file.
+* Convert the downloaded `BaseSystem.dmg` file into the `BaseSystem.img` file.
 
   ```
   qemu-img convert BaseSystem.dmg -O raw BaseSystem.img
@@ -168,9 +162,6 @@ Phenom II X3 720 does not. Ryzen processors work just fine.
   ```
 
   Note: This same script works for Big Sur, Catalina, Mojave, and High Sierra.
-
-  If you are new to installing macOS, see the [older README](README-OLD.md) for
-  help.
 
 - You are all set! 🙌
 
@@ -249,6 +240,9 @@ The "secret" Apple OSK string is widely available on the Internet. It is also in
 Please review the ['Legality of Hackintoshing' documentation bits from Dortania's OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/why-oc.html#legality-of-hackintoshing).
 
 Gabriel Somlo also has [some thoughts](http://www.contrib.andrew.cmu.edu/~somlo/OSXKVM/) on the legal aspects involved in running macOS under QEMU/KVM.
+
+You may also find [this 'Announcing Amazon EC2 Mac instances for macOS' article](https://aws.amazon.com/about-aws/whats-new/2020/11/announcing-amazon-ec2-mac-instances-for-macos/
+) interesting.
 
 
 ### Motivation

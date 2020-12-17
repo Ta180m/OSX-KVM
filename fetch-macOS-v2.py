@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# pylint: disable=C0301,C0116,C0103,R0903
 
 """
 Gather recovery information for Macs.
@@ -59,15 +60,16 @@ def run_query(url, headers, post=None, raw=False):
 
     req = Request(url=url, headers=headers, data=data)
     response = urlopen(req)
-    if raw: return response
+    if raw:
+        return response
     return dict(response.info()), response.read()
 
 
-def generate_id(type, id=None):
+def generate_id(itype, nid=None):
     valid_chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F']
-    if id is None:
-        return ''.join(random.choice(valid_chars) for i in range(type))
-    return id
+    if nid is None:
+        return ''.join(random.choice(valid_chars) for i in range(itype))
+    return nid
 
 
 def product_mlb(mlb):
@@ -403,7 +405,10 @@ def action_guess(args):
 
 
 # https://stackoverflow.com/questions/2280334/shortest-way-of-creating-an-object-with-arbitrary-attributes-in-python
-class data:
+class gdata:
+    """
+    A string to make pylint happy ;)
+    """
     def __init__(self, **kwargs):
         self.__dict__.update(kwargs)
 
@@ -444,14 +449,13 @@ def main():
 
         if args.action == 'download':
             return action_download(args)
-        elif args.action == 'selfcheck':
+        if args.action == 'selfcheck':
             return action_selfcheck(args)
-        elif args.action == 'verify':
+        if args.action == 'verify':
             return action_verify(args)
-        elif args.action == 'guess':
+        if args.action == 'guess':
             return action_guess(args)
-        else:
-            assert False
+        assert False
 
     products = [
             {"name": "High Sierra (10.13)", "b": "Mac-7BA5B2D9E42DDD94", "m": "00000000000J80300"},
@@ -474,7 +478,8 @@ def main():
 
     # action
     product = products[index]
-    args = data(mlb = product["m"], board_id = product["b"], diagnostics = False, os_type = "default", verbose=False, basename="", outdir=".")
+    args = gdata(mlb = product["m"], board_id = product["b"], diagnostics =
+            False, os_type = "default", verbose=False, basename="", outdir=".")
     action_download(args)
 
 
